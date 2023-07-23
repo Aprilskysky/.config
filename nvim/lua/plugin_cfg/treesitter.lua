@@ -12,7 +12,16 @@ return {
         treesitter.setup({
             -- install language parser
             -- :TSInstallInfo will show the languages
-            ensure_installed = { "verilog", "python", "vim", "lua", "perl", "typescript" },
+            ensure_installed = {
+                "verilog",
+                "python",
+                "vim",
+                "lua",
+                "perl",
+                "typescript",
+                "markdown",
+                "markdown_inline"
+            },
             -- enable highlight
             highlight = {
                 enable = true,

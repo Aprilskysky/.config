@@ -23,4 +23,6 @@ require("lazy").setup({
     require("plugin_cfg.autopairs"),
     require("plugin_cfg.treesitter"),
     require("plugin_cfg.comment"),
+    require("plugin_cfg.persistence"),
+    require("plugin_cfg.nvim_cmp"),
 })

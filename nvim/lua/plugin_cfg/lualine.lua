@@ -2,7 +2,7 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "arkav/lualine-lsp-progress",
+        -- "arkav/lualine-lsp-progress",
     },
     config = function()
         local status, lualine = pcall(require, "lualine")
@@ -25,10 +25,10 @@ return {
                 -- +-------------------------------------------------+
                 lualine_c = {
                     "filename",
-                    {
-                        "lsp_progress",
-                        spinner_symbols = { " ", " ", " ", " ", " ", " " },
-                    },
+                    -- {
+                    --     "lsp_progress",
+                    --     spinner_symbols = { " ", " ", " ", " ", " ", " " },
+                    -- },
                 },
                 lualine_x = {
                     "filesize",
