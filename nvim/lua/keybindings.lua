@@ -43,7 +43,6 @@ pluginkeys.telescopelist = {
     },
 }
 
-
 pluginkeys.on_attach = function(_, bufnr)
     local keymap = function(key, cmd, desc)
         if desc then

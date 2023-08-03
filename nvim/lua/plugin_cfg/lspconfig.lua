@@ -24,7 +24,7 @@ return {
             return
         end
         local on_attach = require("keybindings").on_attach
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
         lspcfg.lua_ls.setup({
             on_attach = on_attach,
             capabilities = capabilities,
