@@ -22,6 +22,8 @@ return {
                 "rust_analyzer",
                 "pyright",
                 "svlangserver",
+                "svls",
+                "verible",
             },
             automatic_installation = true,
         })

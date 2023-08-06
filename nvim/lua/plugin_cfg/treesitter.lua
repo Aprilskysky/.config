@@ -10,8 +10,6 @@ return {
         end
 
         treesitter.setup({
-            -- install language parser
-            -- :TSInstallInfo will show the languages
             ensure_installed = {
                 "verilog",
                 "python",
