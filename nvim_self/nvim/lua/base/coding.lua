@@ -64,23 +64,23 @@ return {
 		},
 		keys = {
 			{
-				"<tab>",
+				"<C-n>",
 				function()
-					return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+					return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<C-n>"
 				end,
 				expr = true,
 				silent = true,
 				mode = "i",
 			},
 			{
-				"<tab>",
+				"<C-n>",
 				function()
 					require("luasnip").jump(1)
 				end,
 				mode = "s",
 			},
 			{
-				"<s-tab>",
+				"<C-p>",
 				function()
 					require("luasnip").jump(-1)
 				end,
@@ -122,7 +122,7 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-					["<Tab>"] = cmp.mapping(function(fallback)
+					["<C-n>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
 						-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -135,7 +135,7 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
+					["<C-p>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						elseif luasnip.jumpable(-1) then

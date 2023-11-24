@@ -317,20 +317,20 @@ return {
 		end,
 	},
 
-	{
-		"nathom/filetype.nvim",
-		lazy = false,
-		-- event = "User FileOpened",
-		config = function()
-			require("filetype").setup({
-				-- overrides = {
-				-- 	extensions = {
-				-- 		h = "cpp",
-				-- 	},
-				-- },
-			})
-		end,
-	},
+	-- {
+	-- 	"nathom/filetype.nvim",
+	-- 	lazy = false,
+	-- 	-- event = "User FileOpened",
+	-- 	config = function()
+	-- 		require("filetype").setup({
+	-- 			-- overrides = {
+	-- 			-- 	extensions = {
+	-- 			-- 		h = "cpp",
+	-- 			-- 	},
+	-- 			-- },
+	-- 		})
+	-- 	end,
+	-- },
 
 	{
 		"folke/persistence.nvim",

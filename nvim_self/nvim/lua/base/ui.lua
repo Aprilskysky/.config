@@ -14,12 +14,28 @@ return {
 		config = function(_, opts)
 			local tokyonight = require("tokyonight")
 			tokyonight.setup(opts)
-			tokyonight.load()
 			-- vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
 
-	{ "catppuccin/nvim", lazy = false, name = "catppuccin" },
+	{
+		"catppuccin/nvim",
+		lazy = false,
+		name = "catppuccin",
+		config = function()
+			-- vim.cmd([[colorscheme catppuccin]])
+		end,
+	},
+
+	{
+		"ellisonleao/gruvbox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("gruvbox").setup()
+			vim.cmd([[colorscheme gruvbox]])
+		end,
+	},
 
 	{
 		"stevearc/dressing.nvim",
