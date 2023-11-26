@@ -14,22 +14,18 @@ return {
 				vim.notify("not found nvim-tree")
 				return
 			end
-
 			local function my_on_attach(bufnr)
 				local api = require("nvim-tree.api")
 
 				local function opts(desc)
 					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 				end
-
 				-- default mappings
 				api.config.mappings.default_on_attach(bufnr)
-
 				-- custom mappings
 				vim.keymap.set("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
 				vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 			end
-
 			nvim_tree.setup({
 				on_attach = my_on_attach,
 				-- not show git icon
@@ -71,9 +67,28 @@ return {
 				},
 			})
 			-- auto close
-			vim.cmd([[
-	         autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-	       ]])
+			vim.api.nvim_create_autocmd("QuitPre", {
+				callback = function()
+					local tree_wins = {}
+					local floating_wins = {}
+					local wins = vim.api.nvim_list_wins()
+					for _, w in ipairs(wins) do
+						local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+						if bufname:match("NvimTree_") ~= nil then
+							table.insert(tree_wins, w)
+						end
+						if vim.api.nvim_win_get_config(w).relative ~= "" then
+							table.insert(floating_wins, w)
+						end
+					end
+					if 1 == #wins - #floating_wins - #tree_wins then
+						-- Should quit, so we close all invalid windows.
+						for _, w in ipairs(tree_wins) do
+							vim.api.nvim_win_close(w, true)
+						end
+					end
+				end,
+			})
 		end,
 	},
 
@@ -96,15 +111,9 @@ return {
 				mappings = {
 					i = {
 						["<C-j>"] = function(...)
-							require("telescope.actions").move_selection_next(...)
-						end,
-						["<C-k>"] = function(...)
-							require("telescope.actions").move_selection_previous(...)
-						end,
-						["<C-n>"] = function(...)
 							require("telescope.actions").cycle_history_next(...)
 						end,
-						["<C-p>"] = function(...)
+						["<C-k>"] = function(...)
 							require("telescope.actions").cycle_history_prev(...)
 						end,
 					},
@@ -172,7 +181,6 @@ return {
 				vim.notify("not found lualine")
 				return
 			end
-
 			lualine.setup({
 				options = {
 					-- theme = "tokyonight",
@@ -311,26 +319,36 @@ return {
 			-- vim.g.nvim_tree_respect_buf_cwd = 1
 			require("project_nvim").setup({
 				detection_methods = { "lsp", "pattern" },
-				patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+				patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "=uvm" },
 			})
 			require("telescope").load_extension("projects")
 		end,
 	},
 
-	-- {
-	-- 	"nathom/filetype.nvim",
-	-- 	lazy = false,
-	-- 	-- event = "User FileOpened",
-	-- 	config = function()
-	-- 		require("filetype").setup({
-	-- 			-- overrides = {
-	-- 			-- 	extensions = {
-	-- 			-- 		h = "cpp",
-	-- 			-- 	},
-	-- 			-- },
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"nathom/filetype.nvim",
+		lazy = false,
+		-- event = "User FileOpened",
+		config = function()
+			require("filetype").setup({
+				overrides = {
+					extensions = {
+						-- Set the filetype of *.pn files to potion
+						pl = "perl",
+						list = "list",
+					},
+					literal = {
+						-- Set the filetype of files named "MyBackupFile" to lua
+						-- MyBackupFile = "lua",
+					},
+					complex = {
+						-- Set the filetype of any full filename matching the regex to gitconfig
+						[".bashrc"] = "bash", -- Included in the plugin
+					},
+				},
+			})
+		end,
+	},
 
 	{
 		"folke/persistence.nvim",

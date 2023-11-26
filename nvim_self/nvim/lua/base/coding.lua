@@ -21,6 +21,7 @@ return {
 			local ft = require("Comment.ft")
 			ft.systemverilog = { "//%s", "/*%s*/" }
 			ft.verilog = { "//%s", "/*%s*/" }
+			ft.list = { "//%s" }
 		end,
 	},
 
@@ -53,10 +54,23 @@ return {
 				and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
 			or nil,
 		dependencies = {
-			"rafamadriz/friendly-snippets",
-			config = function()
-				require("luasnip.loaders.from_vscode").lazy_load()
-			end,
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
+
+			{
+				"honza/vim-snippets",
+				config = function()
+					require("luasnip.loaders.from_snipmate").lazy_load()
+					-- One peculiarity of honza/vim-snippets is that the file with the global snippets is _.snippets, so global snippets
+					-- are stored in `ls.snippets._`.
+					-- We need to tell luasnip that "_" contains global snippets:
+					require("luasnip").filetype_extend("all", { "_" })
+				end,
+			},
 		},
 		opts = {
 			history = true,
@@ -161,5 +175,45 @@ return {
 				}),
 			})
 		end,
+	},
+
+	{
+		"echasnovski/mini.align",
+		keys = { { "ga", mode = { "n", "v" } }, { "gA", mode = { "n", "v" } } },
+		opts = {},
+	},
+
+	{
+		"folke/todo-comments.nvim",
+		cmd = { "TodoTrouble", "TodoTelescope" },
+		event = "BufReadPost",
+		config = true,
+		keys = {
+			{
+				"]t",
+				function()
+					require("todo-comments").jump_next()
+				end,
+				desc = "Next todo comment",
+			},
+			{
+				"[t",
+				function()
+					require("todo-comments").jump_prev()
+				end,
+				desc = "Previous todo comment",
+			},
+			{ "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+			{ "<leader>xT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+			{ "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo" },
+			{ "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+		},
+	},
+
+	{
+		"folke/trouble.nvim",
+		event = "VeryLazy",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
 	},
 }

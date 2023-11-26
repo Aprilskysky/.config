@@ -42,7 +42,7 @@ opt.writebackup = false
 opt.swapfile = false
 -- set time
 opt.updatetime = 300
-opt.timeoutlen = 450 -- Wait for keyboard shortcut combo time
+opt.timeoutlen = 500 -- Wait for keyboard shortcut combo time
 -- A split window appears from the bottom and right
 opt.splitbelow = true
 opt.splitright = true
@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	pattern = { "*" },
 	callback = function()
 		vim.highlight.on_yank({
-			timeout = 150,
+			timeout = 100,
 		})
 	end,
 })

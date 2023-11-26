@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		{ import = "base" },
-		{ import = "language.common" },
+		{ import = "language.treesitter" },
 	},
 	defaults = { lazy = true, version = nil },
 	install = { missing = true, colorscheme = { "tokyonight", "catppuccin" } },
