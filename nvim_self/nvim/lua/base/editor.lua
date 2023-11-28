@@ -133,7 +133,7 @@ return {
 		opts = {
 			options = {
 				diagnostics = "nvim_lsp",
-				-- always_show_bufferline = false,
+				always_show_bufferline = false,
 				diagnostics_indicator = function(_, _, diag)
 					local icons = require("lazyvim.config").icons.diagnostics
 					local ret = (diag.error and icons.Error .. diag.error .. " " or "")
@@ -252,6 +252,36 @@ return {
 	},
 
 	{
+		"echasnovski/mini.indentscope",
+		event = "VeryLazy",
+		opts = {
+			-- symbol = "▏",
+			symbol = "│",
+			options = { try_as_border = true },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = {
+					"help",
+					"alpha",
+					"dashboard",
+					"neo-tree",
+					"Trouble",
+					"trouble",
+					"lazy",
+					"mason",
+					"notify",
+					"toggleterm",
+					"lazyterm",
+				},
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+		end,
+	},
+
+	{
 		"nvimdev/dashboard-nvim",
 		event = "VimEnter",
 		opts = function()
@@ -344,6 +374,10 @@ return {
 					complex = {
 						-- Set the filetype of any full filename matching the regex to gitconfig
 						[".bashrc"] = "bash", -- Included in the plugin
+						[".cshrc"] = "csh",
+						[".cshrc.user"] = "csh",
+						[".tmux.conf"] = "tmux",
+						["tmux.conf"] = "tmux",
 					},
 				},
 			})
@@ -369,5 +403,10 @@ return {
 			-- stop Persistence => session won't be saved on exit
 			vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {}),
 		},
+	},
+
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
 	},
 }
