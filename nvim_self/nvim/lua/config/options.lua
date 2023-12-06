@@ -86,4 +86,11 @@ opt.splitkeep = "screen"
 opt.splitright = true -- Put new windows right of current
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 
+-- GUI
+vim.o.guifont = "FiraCode Nerd Font Mono:h12"
+if vim.g.neovide then
+	vim.g.neovide_refresh_rate = 60
+end
+
 vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
+-- vim.cmd([[set shell=/bin/bash\ -i]])
