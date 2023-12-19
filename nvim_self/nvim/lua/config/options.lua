@@ -63,15 +63,6 @@ opt.showmode = false
 -- When the file is modified by an external program, it is automatically loaded
 opt.autoread = true
 vim.bo.autoread = true
--- highligt when copy
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.highlight.on_yank({
-			timeout = 150,
-		})
-	end,
-})
 -- disable netrw
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
@@ -86,11 +77,13 @@ opt.splitkeep = "screen"
 opt.splitright = true -- Put new windows right of current
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 
+-- vim.cmd([[set shell=/bin/bash\ -i]])
+vim.cmd([[
+  set ttyfast
+]])
+
 -- GUI
 vim.o.guifont = "FiraCode Nerd Font Mono:h12"
 if vim.g.neovide then
 	vim.g.neovide_refresh_rate = 60
 end
-
-vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
--- vim.cmd([[set shell=/bin/bash\ -i]])

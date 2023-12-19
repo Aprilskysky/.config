@@ -3,50 +3,61 @@ return {
 	version = false,
 	build = ":TSUpdate",
 	event = "VeryLazy",
-	config = function()
+	opts = {
+		ensure_installed = {
+			"bash",
+			"c",
+			"diff",
+			"html",
+			"javascript",
+			"jsdoc",
+			"json",
+			"jsonc",
+			"lua",
+			"luadoc",
+			"luap",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"query",
+			"regex",
+			"toml",
+			"tsx",
+			"typescript",
+			"vim",
+			"vimdoc",
+			"yaml",
+		},
+		-- enable highlight
+		highlight = {
+			enable = true,
+			additional_vim_regex_highlighting = {
+				"verilog",
+				"systemverilog",
+			},
+		},
+		indent = {
+			enable = true,
+		},
+	},
+	config = function(_, opts)
 		local status, treesitter = pcall(require, "nvim-treesitter.configs")
 		if not status then
 			vim.notify("not found nvim-treesitter")
 			return
 		end
 
-		treesitter.setup({
-			ensure_installed = {
-				"bash",
-				"c",
-				"diff",
-				"html",
-				"javascript",
-				"jsdoc",
-				"json",
-				"jsonc",
-				"lua",
-				"luadoc",
-				"luap",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"query",
-				"regex",
-				"toml",
-				"tsx",
-				"typescript",
-				"vim",
-				"vimdoc",
-				"yaml",
-				"verilog",
-			},
-			-- enable highlight
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = {
-					"verilog",
-					"systemverilog",
-				},
-			},
-			indent = {
-				enable = true,
-			},
-		})
+		if type(opts.ensure_installed) == "table" then
+			---@type table<string, boolean>
+			local added = {}
+			opts.ensure_installed = vim.tbl_filter(function(lang)
+				if added[lang] then
+					return false
+				end
+				added[lang] = true
+				return true
+			end, opts.ensure_installed)
+		end
+		treesitter.setup(opts)
 	end,
 }
