@@ -1,8 +1,8 @@
 return {
 	{
 		"folke/which-key.nvim",
-		-- event = "VeryLazy",
-		cmd = "WhichKey",
+		event = "VeryLazy",
+		-- cmd = "WhichKey",
 		opts = {
 			plugins = { spelling = true },
 			defaults = {
@@ -13,6 +13,10 @@ return {
 				["<leader>f"] = { name = "+file/find" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>x"] = { name = "+diagnostics/quickfix" },
+				["<leader>s"] = { name = "+search" },
+				["<leader>b"] = { name = "+buffer" },
+				["<leader>r"] = { name = "+re/" },
+				["<leader>c"] = { name = "+code" },
 			},
 		},
 		config = function(_, opts)

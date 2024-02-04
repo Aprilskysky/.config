@@ -5,7 +5,7 @@ return {
 			if type(opts.ensure_installed) == "table" then
 				vim.list_extend(opts.ensure_installed, { "lua", "luadoc", "luap" })
 			else
-				print("treesitter ensure_installed is not a table")
+				print("treesitter ensure_installed is not a table in lua")
 			end
 		end,
 	},
@@ -16,7 +16,7 @@ return {
 			if type(opts.ensure_installed) == "table" then
 				vim.list_extend(opts.ensure_installed, { "stylua" })
 			else
-				print("mason ensure_installed is not a table")
+				print("mason ensure_installed is not a table in lua")
 			end
 		end,
 	},

@@ -15,10 +15,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		{ import = "plugins.editor" },
-		-- { import = "plugins.language.treesitter" },
-		-- { import = "plugins.language.lsp" },
-		-- { import = "plugins.language.lua" },
-		-- { import = "plugins.language.sv_verilog" },
+		{ import = "plugins.language.treesitter" },
+		{ import = "plugins.language.lsp" },
+		{ import = "plugins.language.lua" },
+		{ import = "plugins.language.sv_verilog" },
 	},
 	defaults = {
 		lazy = true,
