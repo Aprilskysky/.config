@@ -1,0 +1,12 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+nvim_self/share
+tmux/plugins
+nvim_self/nvim/dashboard
+nvim_self/nvim/luac

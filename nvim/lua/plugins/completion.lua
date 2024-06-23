@@ -1,0 +1,88 @@
+return {
+  -- {
+  --   "garymjr/nvim-snippets",
+  --   keys = {
+  --     {
+  --       "C_n",
+  --       function()
+  --         if vim.snippet.active({ direction = 1 }) then
+  --           vim.schedule(function()
+  --             vim.snippet.jump(1)
+  --           end)
+  --           return
+  --         end
+  --         return "C_n"
+  --       end,
+  --       expr = true,
+  --       silent = true,
+  --       mode = "i",
+  --     },
+  --     {
+  --       "C_n",
+  --       function()
+  --         vim.schedule(function()
+  --           vim.snippet.jump(1)
+  --         end)
+  --       end,
+  --       expr = true,
+  --       silent = true,
+  --       mode = "s",
+  --     },
+  --     {
+  --       "C-p",
+  --       function()
+  --         if vim.snippet.active({ direction = -1 }) then
+  --           vim.schedule(function()
+  --             vim.snippet.jump(-1)
+  --           end)
+  --           return
+  --         end
+  --         return "C-p"
+  --       end,
+  --       expr = true,
+  --       silent = true,
+  --       mode = { "i", "s" },
+  --     },
+  --   },
+  -- },
+  --
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   opts = function(_, opts)
+  --     local has_words_before = function()
+  --       unpack = unpack or table.unpack
+  --       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  --       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  --     end
+  --
+  --     local cmp = require("cmp")
+  --
+  --     opts.mapping = vim.tbl_extend("force", opts.mapping, {
+  --       ["C-n"] = cmp.mapping(function(fallback)
+  --         if cmp.visible() then
+  --           cmp.select_next_item()
+  --         elseif vim.snippet.active({ direction = 1 }) then
+  --           vim.schedule(function()
+  --             vim.snippet.jump(1)
+  --           end)
+  --         elseif has_words_before() then
+  --           cmp.complete()
+  --         else
+  --           fallback()
+  --         end
+  --       end, { "i", "s" }),
+  --       ["C-p"] = cmp.mapping(function(fallback)
+  --         if cmp.visible() then
+  --           cmp.select_prev_item()
+  --         elseif vim.snippet.active({ direction = -1 }) then
+  --           vim.schedule(function()
+  --             vim.snippet.jump(-1)
+  --           end)
+  --         else
+  --           fallback()
+  --         end
+  --       end, { "i", "s" }),
+  --     })
+  --   end,
+  -- },
+}
