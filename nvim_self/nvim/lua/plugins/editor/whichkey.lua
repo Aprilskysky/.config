@@ -3,27 +3,30 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		-- cmd = "WhichKey",
+		opts_extend = { "spec" },
 		opts = {
-			plugins = { spelling = true },
-			defaults = {
+			defaults = {},
+			spec = {
 				mode = { "n", "v" },
-				["g"] = { name = "+goto" },
-				["]"] = { name = "+next" },
-				["["] = { name = "+prev" },
-				["<leader>f"] = { name = "+file/find" },
-				["<leader>q"] = { name = "+quit/session" },
-				["<leader>x"] = { name = "+diagnostics/quickfix" },
-				["<leader>s"] = { name = "+search" },
-				["<leader>b"] = { name = "+buffer" },
-				["<leader>r"] = { name = "+re/" },
-				["<leader>c"] = { name = "+code" },
-				["<leader>h"] = { name = "+harpoon" },
+				{ "<leader>b", group = "buffer" },
+				{ "<leader>c", group = "code" },
+				{ "<leader>f", group = "file/find" },
+				{ "<leader>h", group = "harpoon" },
+				{ "<leader>q", group = "quit/session" },
+				{ "<leader>r", group = "re/" },
+				{ "<leader>s", group = "search" },
+				{ "<leader>x", group = "diagnostics/quickfix" },
+				{ "[", group = "prev" },
+				{ "]", group = "next" },
+				{ "g", group = "goto" },
 			},
 		},
 		config = function(_, opts)
 			local wk = require("which-key")
 			wk.setup(opts)
-			wk.register(opts.defaults)
+			if not vim.tbl_isempty(opts.defaults) then
+				wk.register(opts.defaults)
+			end
 		end,
 	},
 }

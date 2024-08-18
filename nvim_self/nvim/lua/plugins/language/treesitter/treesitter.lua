@@ -3,6 +3,10 @@ return {
 	version = false,
 	build = ":TSUpdate",
 	event = "VeryLazy",
+	lazy = vim.fn.argc(-1) == 0,
+	init = function()
+		require("nvim-treesitter.query_predicates")
+	end,
 	opts = {
 		-- ensure_installed = "all",
 		ensure_installed = {
@@ -28,7 +32,7 @@ return {
 			"vim",
 			"vimdoc",
 			"yaml",
-			"verilog",
+			"systemverilog",
 			"perl",
 			"tcl",
 			"csv",
@@ -36,10 +40,10 @@ return {
 		-- enable highlight
 		highlight = {
 			enable = true,
-			additional_vim_regex_highlighting = {
-				"verilog",
-				"systemverilog",
-			},
+			-- additional_vim_regex_highlighting = {
+			-- 	"verilog",
+			-- 	"systemverilog",
+			-- },
 		},
 		indent = {
 			enable = true,

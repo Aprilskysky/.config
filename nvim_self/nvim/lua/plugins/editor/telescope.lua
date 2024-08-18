@@ -24,6 +24,9 @@ return {
 					end,
 				},
 			},
+			preview = {
+				treesitter = false,
+			},
 			-- borderchars = {
 			-- 	prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
 			-- 	results = { " " },

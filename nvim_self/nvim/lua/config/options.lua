@@ -78,7 +78,7 @@ vim.opt.conceallevel = 0
 opt.nrformats = "unsigned"
 
 -- vim.cmd([[set shell=/bin/bash\ -i]])
--- vim.cmd([[set shell=/bin/bash\ -noprofile]])
+vim.cmd([[set shell=/bin/bash\ -noprofile]])
 vim.cmd([[
   set suffixesadd+=.sv,.v,.svh,.csh,.tcl,.pl,.py
   set path+=**
@@ -97,9 +97,8 @@ vim.filetype.add({
 		list = "list",
 		csh = "tcsh",
 		f = "file",
-		-- sh = "bash",
+		v = "systemverilog",
 		-- sv = "verilog_systemverilog",
-		-- v = "verilog_systemverilog",
 		-- svh = "verilog_systemverilog",
 	},
 	filename = {

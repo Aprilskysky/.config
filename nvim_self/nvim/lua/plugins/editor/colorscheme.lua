@@ -36,6 +36,7 @@ return {
 				overrides = {
 					SignColumn = { bg = "#282828" },
 				},
+				bold = true,
 				italic = {
 					strings = false,
 					emphasis = false,
@@ -45,19 +46,6 @@ return {
 				},
 			})
 			vim.cmd([[colorscheme gruvbox]])
-		end,
-	},
-
-	{
-		"luisiacc/gruvbox-baby",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.g.gruvbox_baby_comment_style = "NONE"
-			vim.g.gruvbox_baby_keyword_style = "NONE"
-			-- Enable telescope theme
-			vim.g.gruvbox_baby_telescope_theme = 1
-			-- vim.cmd([[colorscheme gruvbox-baby]])
 		end,
 	},
 }

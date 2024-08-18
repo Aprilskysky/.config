@@ -25,13 +25,13 @@ map("v", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 map("v", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
 map("n", "n", "nzz", { noremap = true, silent = true })
 map("n", "N", "Nzz", { noremap = true, silent = true })
-map("n", "<C-n>", ":bn<CR>", { noremap = true, silent = true })
-map("n", "<C-p>", ":bp<CR>", { noremap = true, silent = true })
+map("n", "<C-n>", "<cmd>bn<cr>", { noremap = true, silent = true })
+map("n", "<C-p>", "<cmd>bp<cr>", { noremap = true, silent = true })
 map("n", "<leader>l", ":Lazy<CR>", { noremap = true, silent = true })
 
-map("n", "<leader>cl", ":LspInfo<CR>", { noremap = true, silent = true })
-map("n", "<leader>ch", "::TSBufToggle highlight<CR>", { noremap = true, silent = true })
-map("n", "<leader>cH", "::TSToggle highlight<CR>", { noremap = true, silent = true })
+map("n", "<leader>cl", "<cmd>LspInfo<cr>", { noremap = true, silent = true })
+map("n", "<leader>ch", "<cmd>TSBufToggle highlight<cr>", { noremap = true, silent = true })
+map("n", "<leader>cH", "<cmd>TSToggle highlight<cr>", { noremap = true, silent = true })
 map("n", "<leader>ct", function()
 	if vim.bo.syntax == "systemverilog" then
 		vim.bo.syntax = "verilog_systemverilog"
