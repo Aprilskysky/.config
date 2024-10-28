@@ -2,28 +2,39 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
+		-- enabled = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		},
-		keys = {
-			{
-				"<leader>e",
-				function()
-					require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
-				end,
-				desc = "Explorer NeoTree (root)",
-			},
-			{
-				"<leader>be",
-				function()
-					require("neo-tree.command").execute({ source = "buffers", toggle = true })
-				end,
-				desc = "Buffer Explorer",
-			},
-		},
+		-- keys = {
+		-- 	{
+		-- 		"<leader>e",
+		-- 		function()
+		-- 			require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+		-- 		end,
+		-- 		desc = "Explorer NeoTree (root)",
+		-- 	},
+		-- 	{
+		-- 		"<leader>E",
+		-- 		function()
+		-- 			require("neo-tree.command").execute({
+		-- 				toggle = true,
+		-- 				dir = vim.api.nvim_buf_get_name(0):match("(.*/)"),
+		-- 			})
+		-- 		end,
+		-- 		desc = "Explorer NeoTree (current)",
+		-- 	},
+		-- 	{
+		-- 		"<leader>be",
+		-- 		function()
+		-- 			require("neo-tree.command").execute({ source = "buffers", toggle = true })
+		-- 		end,
+		-- 		desc = "Buffer Explorer",
+		-- 	},
+		-- },
 		init = function()
 			-- FIX: use `autocmd` for lazy-loading neo-tree instead of directly requiring it,
 			-- because `cwd` is not set up properly.
@@ -58,7 +69,7 @@ return {
 			},
 			default_component_configs = {
 				name = {
-					trailing_slash = true,
+					trailing_slash = false,
 					use_git_status_colors = true,
 					highlight = "NeoTreeFileName",
 				},

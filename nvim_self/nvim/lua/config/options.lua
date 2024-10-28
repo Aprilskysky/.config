@@ -98,8 +98,8 @@ vim.filetype.add({
 		csh = "tcsh",
 		f = "file",
 		v = "systemverilog",
-		-- sv = "verilog_systemverilog",
-		-- svh = "verilog_systemverilog",
+		sv = "systemverilog",
+		svh = "systemverilog",
 	},
 	filename = {
 		-- [".bashrc"] = "bash",

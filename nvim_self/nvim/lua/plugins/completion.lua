@@ -12,30 +12,9 @@ return {
 				"garymjr/nvim-snippets",
 				opts = {
 					friendly_snippets = true,
-					extended_filetypes = {
-						systemverilog = {
-							"sv_containers",
-							"sv_language_constructs",
-							"uvm_containers",
-							"uvm_macros",
-							"uvm_phases",
-						},
-						verilog_systemverilog = {
-							"systemverilog",
-							"sv_containers",
-							"sv_language_constructs",
-							"uvm_containers",
-							"uvm_macros",
-							"uvm_phases",
-						},
-					},
-					search_paths = {
-						vim.fn.stdpath("data") .. "/lazy/sv-1800-2012/snippets",
-					},
 				},
 				dependencies = {
 					"rafamadriz/friendly-snippets",
-					"gvekony/sv-1800-2012",
 				},
 			},
 		},
