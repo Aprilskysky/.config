@@ -1,0 +1,15 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+*.7z
+data
+nvim_self/share
+tmux/plugins
+nvim_self/nvim/dashboard
+nvim_self/nvim/luac
+nvim_self/nvim/gentags.nvim
+nvim_self/cache
