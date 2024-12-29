@@ -19,10 +19,10 @@ return {
       file_ignore_patterns = { "^luac", "%.luac" },
       mappings = {
         i = {
-          ["<C-j>"] = function(...)
+          ["<Down>"] = function(...)
             require("telescope.actions").cycle_history_next(...)
           end,
-          ["<C-k>"] = function(...)
+          ["<Up>"] = function(...)
             require("telescope.actions").cycle_history_prev(...)
           end,
         },

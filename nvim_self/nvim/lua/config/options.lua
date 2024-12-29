@@ -51,8 +51,6 @@ opt.completeopt = "menu,menuone,noselect,noinsert"
 -- style
 opt.background = "dark"
 opt.termguicolors = true
--- Display of invisible characters
-opt.list = false
 -- Complete enhancement
 opt.wildmenu = true
 -- show tabline forever

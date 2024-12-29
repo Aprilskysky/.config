@@ -1,6 +1,7 @@
 return {
   "williamboman/mason.nvim",
   build = ":MasonUpdate",
+  lazy = false,
   -- event = "VeryLazy",
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
@@ -26,6 +27,8 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "lua_ls",
+        "perlnavigator",
+        "bashls",
         -- "verible",
         -- "svlangserver",
       },
@@ -35,6 +38,7 @@ return {
       ensure_installed = {
         "stylua", -- lua formatter
         "verible",
+        -- "beautysh",
       },
     })
   end,

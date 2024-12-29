@@ -26,7 +26,7 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
-map("n", "<leader>n", ":set relativenumber!<CR>", { noremap = true, silent = true })
+-- map("n", "<leader>n", ":set relativenumber!<CR>", { noremap = true, silent = true })
 map("v", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 map("v", "K", ":move '<-2<CR>gv-gv", { noremap = true, silent = true })
 map("n", "n", "nzz", { noremap = true, silent = true })

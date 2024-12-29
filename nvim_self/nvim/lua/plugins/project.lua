@@ -11,10 +11,11 @@ return {
         ".hg",
         ".bzr",
         ".svn",
-        "Makefile",
+        ".root",
+        -- "Makefile",
         "package.json",
         ">IPCRV",
-        ">sim",
+        ">check_flow",
       },
     })
     require("telescope").load_extension("projects")
