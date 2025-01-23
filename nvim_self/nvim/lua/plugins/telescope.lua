@@ -16,6 +16,7 @@ return {
     },
   opts = {
     defaults = {
+      layout_strategy = "vertical",
       file_ignore_patterns = { "^luac", "%.luac" },
       mappings = {
         i = {

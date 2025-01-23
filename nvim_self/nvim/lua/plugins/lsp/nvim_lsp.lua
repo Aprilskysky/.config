@@ -58,9 +58,10 @@ return {
       require("mason-lspconfig").setup_handlers({
         ["bashls"] = require("plugins.languages.bash").set_bashls(lspconfig, capabilities),
         ["lua_ls"] = require("plugins.languages.lua").set_lua_ls(lspconfig, capabilities),
-        ["verible"] = require("plugins.languages.systemverilog").set_verible(lspconfig, capabilities),
+        -- ["verible"] = require("plugins.languages.systemverilog").set_verible(lspconfig, capabilities),
         ["perlnavigator"] = require("plugins.languages.perl").set_perlnavigator(lspconfig, capabilities),
       })
+      require("plugins.languages.systemverilog").set_veridian(lspconfig, capabilities)
     end,
   },
 }
