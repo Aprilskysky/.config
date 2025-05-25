@@ -6,12 +6,13 @@ return {
       "MunifTanjim/nui.nvim",
       {
         "rcarriga/nvim-notify",
-        opt = {
+        opts = {
           background_colour = "#000000",
         },
       },
       {
         "mrded/nvim-lsp-notify",
+        enabled = false,
         config = function()
           require("lsp-notify").setup({
             notify = require("notify"),

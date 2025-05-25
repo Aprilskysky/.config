@@ -29,7 +29,6 @@ return {
         "lua_ls",
         "perlnavigator",
         "bashls",
-        -- "verible",
         -- "svlangserver",
       },
     })

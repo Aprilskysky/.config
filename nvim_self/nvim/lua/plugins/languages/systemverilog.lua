@@ -148,17 +148,20 @@ function M.set_sv_linter(lint, linter_type)
   end
 end
 
-function M.set_verible(lspconfig, capabilities)
-  lspconfig["verible"].setup({
+function M.set_verible(capabilities)
+  vim.lsp.config("verible", {
     capabilities = capabilities,
   })
+  vim.lsp.enable("verible")
 end
 
-function M.set_veridian(lspconfig, capabilities)
-  lspconfig["veridian"].setup({
-    cmd = { "/home/wxl/.config/nvim_self/share/nvim/mason/bin/veridian" },
+function M.set_veridian(capabilities)
+  vim.lsp.config("veridian", {
+    cmd = { vim.fn.stdpath("data") .. "/mason/bin/veridian" },
+    root_markers = { ".git", "veridian.yml" },
     capabilities = capabilities,
   })
+  vim.lsp.enable("veridian")
 end
 
 return M

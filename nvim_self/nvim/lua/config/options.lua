@@ -107,3 +107,5 @@ vim.filetype.add({
     -- ["tmux.conf"] = "tmux",
   },
 })
+
+vim.deprecate = function() end

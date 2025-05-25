@@ -6,6 +6,9 @@ debug
 foo.*
 *.log
 *.7z
+*.tar
+*.gz
+*.xz
 data
 nvim_self/share
 tmux/plugins

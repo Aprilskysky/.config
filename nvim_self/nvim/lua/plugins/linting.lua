@@ -17,6 +17,7 @@ return {
         { name = "DiagnosticSignInfo", text = icons.diagnostics.BoldInformation },
       }
       for _, sign in ipairs(signs) do
+        -- vim.diagnostic.config(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
         vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
       end
 

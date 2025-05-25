@@ -56,10 +56,6 @@ return {
         let g:gutentags_ctags_extra_args += ["--exclude=*.docx"]
         let g:gutentags_ctags_extra_args += ["--exclude=*.ppt"]
         let g:gutentags_ctags_extra_args += ["--exclude=*.pptx"]
-        augroup set_ctags_extra_args_for_sv
-          au!
-          autocmd FileType systemverilog let g:gutentags_ctags_extra_args += ["-R /mtklib/soft/verif/Methodology/UVM/uvm/latest/src"]
-        augroup END
       ]])
     end,
   },
