@@ -56,8 +56,12 @@ return {
         end,
       })
 
-      -- used to enable autocompletion (assign to every lsp server config)
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
       require("plugins.languages.lua").set_lua_ls(capabilities)
       require("plugins.languages.systemverilog").set_veridian(capabilities)
     end,
