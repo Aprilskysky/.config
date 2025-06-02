@@ -1,121 +1,18 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "onsails/lspkind.nvim",
-      "delphinus/cmp-ctags",
-      {
-        "garymjr/nvim-snippets",
-        opts = {
-          friendly_snippets = true,
-        },
-        dependencies = {
-          "rafamadriz/friendly-snippets",
-        },
-      },
-    },
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = "lazydev",
-        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-      })
-    end,
-    config = function()
-      local cmp = require("cmp")
-      local lspkind = require("lspkind")
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.snippet.expand(args.body)
-          end,
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-          ["<C-n>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif vim.snippet.active({ direction = 1 }) then
-              vim.schedule(function()
-                vim.snippet.jump(1)
-              end)
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<C-p>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif vim.snippet.active({ direction = -1 }) then
-              vim.schedule(function()
-                vim.snippet.jump(-1)
-              end)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          {
-            name = "ctags",
-            -- default values
-            option = {
-              executable = "ctags",
-              trigger_characters = { "." },
-              trigger_characters_ft = {},
-            },
-          },
-          {
-            name = "buffer",
-            option = {
-              -- get all buffers
-              get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-              end,
-            },
-          },
-          { name = "snippets" },
-          { name = "path" },
-        }),
-        -- configure lspkind for vs-code like pictograms in completion menu
-        formatting = {
-          format = lspkind.cmp_format({
-            maxwidth = 50,
-            ellipsis_char = "...",
-          }),
-        },
-      })
-    end,
-  },
-
-  {
     "saghen/blink.cmp",
-    event = "InsertEnter",
+    event = "VeryLazy",
     dependencies = {
       "rafamadriz/friendly-snippets",
       "folke/lazydev.nvim",
       "mikavilpas/blink-ripgrep.nvim",
+      {
+        "Kaiser-Yang/blink-cmp-dictionary",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+          "dwyl/english-words",
+        },
+      },
       { "xzbdmw/colorful-menu.nvim", opts = {} },
       {
         "saghen/blink.compat",
@@ -140,6 +37,7 @@ return {
         keyword = {
           range = "full",
         },
+        list = { max_items = 50 },
         documentation = { auto_show = true, auto_show_delay_ms = 200, window = { border = "rounded" } },
         menu = {
           border = "rounded",
@@ -163,10 +61,15 @@ return {
         nerd_font_variant = "mono",
       },
       sources = {
-        default = { "lazydev", "lsp", "path", "buffer", "snippets" },
+        default = { "lazydev", "lsp", "path", "buffer", "snippets", "dictionary" },
         providers = {
-          lsp = { score_offset = 7, fallbacks = {} },
-          path = { score_offset = 9 },
+          lsp = {
+            name = "lsp",
+            module = "blink.cmp.sources.lsp",
+            score_offset = 7,
+            fallbacks = {},
+          },
+          path = { name = "path", score_offset = 9 },
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
@@ -174,6 +77,7 @@ return {
             score_offset = 8,
           },
           buffer = {
+            name = "buffer",
             score_offset = 9,
             opts = {
               -- get all buffers, even ones like neo-tree
@@ -186,7 +90,30 @@ return {
               -- end,
             },
           },
-          snippets = { score_offset = 10 },
+          snippets = { name = "snippets", score_offset = 10 },
+          cmdline = {
+            min_keyword_length = function(ctx)
+              -- when typing a command, only show when the keyword is 3 characters or longer
+              if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+                return 3
+              end
+              return 0
+            end,
+          },
+          dictionary = {
+            module = "blink-cmp-dictionary",
+            name = "Dict",
+            -- Make sure this is at least 2.
+            -- 3 is recommended
+            min_keyword_length = 3,
+            opts = {
+              -- options for blink-cmp-dictionary
+              dictionary_files = {
+                vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/english-words/words.txt"),
+                vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/english-words/uk-us-dict.txt"),
+              },
+            },
+          },
         },
       },
       fuzzy = {

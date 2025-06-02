@@ -11,6 +11,8 @@ foo.*
 *.xz
 data
 nvim_self/share
+nvim_self/app/bin
+nvim_self/app/pkg
 tmux/plugins
 nvim_self/nvim/dashboard
 nvim_self/nvim/luac

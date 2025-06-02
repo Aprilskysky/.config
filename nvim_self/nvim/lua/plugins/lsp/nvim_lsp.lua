@@ -64,6 +64,8 @@ return {
       }
       require("plugins.languages.lua").set_lua_ls(capabilities)
       require("plugins.languages.systemverilog").set_veridian(capabilities)
+      require("plugins.languages.bash").set_bashls(capabilities)
+      require("plugins.languages.perl").set_perlnavigator(capabilities)
     end,
   },
 }

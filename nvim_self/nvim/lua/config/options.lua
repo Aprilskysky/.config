@@ -109,3 +109,4 @@ vim.filetype.add({
 })
 
 vim.deprecate = function() end
+vim.g.config_type = "NORMAL"

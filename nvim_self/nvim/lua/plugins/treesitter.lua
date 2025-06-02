@@ -1,5 +1,12 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  dev = function()
+    if vim.g.config_type == "OA" then
+      return true
+    else
+      return false
+    end
+  end,
   version = false,
   build = ":TSUpdate",
   event = "VeryLazy",
@@ -8,7 +15,6 @@ return {
     require("nvim-treesitter.query_predicates")
   end,
   opts = {
-    -- ensure_installed = "all",
     ensure_installed = {
       "bash",
       "c",
@@ -32,20 +38,14 @@ return {
       "vim",
       "vimdoc",
       "yaml",
-      -- "systemverilog",
       "verilog",
       "perl",
       "tcl",
       "csv",
       "make",
     },
-    -- enable highlight
     highlight = {
       enable = true,
-      -- additional_vim_regex_highlighting = {
-      -- 	"verilog",
-      -- 	"systemverilog",
-      -- },
     },
     indent = {
       enable = true,
@@ -62,7 +62,6 @@ return {
     end
 
     if type(opts.ensure_installed) == "table" then
-      ---@type table<string, boolean>
       local added = {}
       opts.ensure_installed = vim.tbl_filter(function(lang)
         if added[lang] then
