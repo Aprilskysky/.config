@@ -48,3 +48,11 @@ map("n", "<leader>ct", function()
     vim.bo.syntax = "systemverilog"
   end
 end, { noremap = true, silent = true, desc = "verilog_systemverilog and sv Toggle" })
+
+map({ "i", "s" }, "<Tab>", function()
+  if vim.snippet.active({ direction = 1 }) then
+    return "<Tab>"
+  else
+    return "<Tab>"
+  end
+end, { desc = "...", expr = true, silent = true })

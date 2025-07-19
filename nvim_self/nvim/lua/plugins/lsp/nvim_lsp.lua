@@ -1,4 +1,3 @@
-local icons = require("config.icons")
 return {
   {
     "neovim/nvim-lspconfig",
@@ -20,16 +19,6 @@ return {
       },
     },
     config = function()
-      local signs_tb = {
-        { name = "DiagnosticSignError", text = icons.diagnostics.BoldError },
-        { name = "DiagnosticSignWarn", text = icons.diagnostics.BoldWarning },
-        { name = "DiagnosticSignHint", text = icons.diagnostics.BoldHint },
-        { name = "DiagnosticSignInfo", text = icons.diagnostics.BoldInformation },
-      }
-      for _, sign in ipairs(signs_tb) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-      end
-
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lspattach_key", { clear = true }),
         callback = function(args)
@@ -63,9 +52,11 @@ return {
         lineFoldingOnly = true,
       }
       require("plugins.languages.lua").set_lua_ls(capabilities)
-      require("plugins.languages.systemverilog").set_veridian(capabilities)
       require("plugins.languages.bash").set_bashls(capabilities)
       require("plugins.languages.perl").set_perlnavigator(capabilities)
+      if vim.g.config_type == "NORMAL" then
+        require("plugins.languages.systemverilog").set_veridian(capabilities)
+      end
     end,
   },
 }

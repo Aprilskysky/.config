@@ -38,6 +38,7 @@ return {
       ensure_installed = {
         "stylua", -- lua formatter
         "verible",
+        "checkmake",
         -- "beautysh",
       },
     })

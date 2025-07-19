@@ -11,6 +11,7 @@ return {
         dependencies = {
           "nvim-lua/plenary.nvim",
           "dwyl/english-words",
+          "arstgit/high-frequency-vocabulary",
         },
       },
       { "xzbdmw/colorful-menu.nvim", opts = {} },
@@ -33,6 +34,9 @@ return {
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
         ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
       },
+      enabled = function()
+        return not vim.tbl_contains({ "DressingInput" }, vim.bo.filetype)
+      end,
       completion = {
         keyword = {
           range = "full",
@@ -102,15 +106,18 @@ return {
           },
           dictionary = {
             module = "blink-cmp-dictionary",
+            async = true,
             name = "Dict",
             -- Make sure this is at least 2.
             -- 3 is recommended
             min_keyword_length = 3,
+            max_items = 6,
             opts = {
               -- options for blink-cmp-dictionary
               dictionary_files = {
-                vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/english-words/words.txt"),
-                vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/english-words/uk-us-dict.txt"),
+                -- vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/english-words/words.txt"),
+                -- vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/english-words/uk-us-dict.txt"),
+                vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/high-frequency-vocabulary/10k.txt"),
               },
             },
           },
@@ -124,7 +131,16 @@ return {
       },
       cmdline = {
         completion = {
-          menu = { auto_show = true },
+          menu = {
+            auto_show = function()
+              return vim.fn.getcmdtype() == ":"
+            end,
+          },
+          ghost_text = {
+            enabled = function()
+              return vim.fn.getcmdtype() == ":"
+            end,
+          },
           list = { selection = { preselect = true, auto_insert = true } },
         },
         keymap = { preset = "inherit" },

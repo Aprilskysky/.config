@@ -1,6 +1,13 @@
 return {
   "stevearc/conform.nvim",
   event = { "BufReadPre", "BufNewFile" },
+  enabled = function()
+    if vim.g.config_type == "NORMAL" then
+      return true
+    else
+      return false
+    end
+  end,
   config = function()
     local conform = require("conform")
 

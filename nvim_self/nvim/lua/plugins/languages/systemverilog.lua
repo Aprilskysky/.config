@@ -157,7 +157,7 @@ end
 
 function M.set_veridian(capabilities)
   vim.lsp.config("veridian", {
-    cmd = { vim.fn.stdpath("data") .. "/mason/bin/veridian" },
+    cmd = { vim.fn.stdpath("data") .. "/mason/packages/veridian" },
     root_markers = { ".git", "veridian.yml" },
     capabilities = capabilities,
   })

@@ -12,6 +12,29 @@ return {
       vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
       vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
     end,
+    keys = {
+      {
+        "<leader>bd",
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = "Delete Current Buffer",
+      },
+      {
+        "<leader>ba",
+        function()
+          Snacks.bufdelete.all()
+        end,
+        desc = "Delete All Buffer",
+      },
+      {
+        "<leader>bo",
+        function()
+          Snacks.bufdelete.other()
+        end,
+        desc = "Delete Other Buffer",
+      },
+    },
     opts = {
       bigfile = { enabled = true },
       dashboard = { enabled = true },
@@ -42,6 +65,7 @@ return {
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      bufdelete = { enabled = true },
     },
   },
 }

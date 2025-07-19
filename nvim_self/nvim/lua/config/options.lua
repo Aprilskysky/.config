@@ -108,5 +108,26 @@ vim.filetype.add({
   },
 })
 
-vim.deprecate = function() end
-vim.g.config_type = "NORMAL"
+local icons = require("config.icons")
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.diagnostics.BoldError,
+      [vim.diagnostic.severity.WARN] = icons.diagnostics.BoldWarning,
+      [vim.diagnostic.severity.INFO] = icons.diagnostics.BoldInformation,
+      [vim.diagnostic.severity.HINT] = icons.diagnostics.BoldHint,
+    },
+    -- linehl = {
+    --   [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+    -- },
+    -- numhl = {
+    --   [vim.diagnostic.severity.WARN] = "WarningMsg",
+    -- },
+  },
+})
+
+if vim.env.NVIM_APP_CONFIG_TYPE then
+  vim.g.config_type = vim.env.NVIM_APP_CONFIG_TYPE
+else
+  vim.g.config_type = "NORMAL"
+end

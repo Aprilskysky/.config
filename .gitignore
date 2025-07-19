@@ -9,6 +9,7 @@ foo.*
 *.tar
 *.gz
 *.xz
+*.appimage
 data
 nvim_self/share
 nvim_self/app/bin

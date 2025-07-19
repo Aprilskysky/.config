@@ -9,6 +9,7 @@ return {
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "live grep" },
+      -- { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
       { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Show all buffer diagnostics" },
@@ -30,6 +31,15 @@ return {
       },
       preview = {
         treesitter = false,
+      },
+      extensions = {
+        fzf = {
+          fuzzy = true, -- false will only do exact matching
+          override_generic_sorter = true, -- override the generic sorter
+          override_file_sorter = true, -- override the file sorter
+          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+          -- the default case_mode is "smart_case"
+        },
       },
       -- borderchars = {
       --   prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
