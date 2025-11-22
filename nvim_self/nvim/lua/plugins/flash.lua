@@ -3,14 +3,14 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {
-      modes = {
-        search = {
-          enabled = true,
-        },
-        char = {
-          jump_labels = true,
-        },
-      },
+      -- modes = {
+      --   search = {
+      --     enabled = true,
+      --   },
+      --   char = {
+      --     jump_labels = true,
+      --   },
+      -- },
     },
     init = function()
       local hls = {

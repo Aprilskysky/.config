@@ -8,6 +8,16 @@ return {
       "mikavilpas/blink-ripgrep.nvim",
       "archie-judd/blink-cmp-words",
       {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
+      {
         "Kaiser-Yang/blink-cmp-dictionary",
         dependencies = {
           "nvim-lua/plenary.nvim",
@@ -64,6 +74,8 @@ return {
       appearance = {
         nerd_font_variant = "mono",
       },
+      -- snippets = { preset = "luasnip" },
+      snippets = { preset = "default" },
       sources = {
         default = function()
           if vim.g.config_type == "RD" then
@@ -73,9 +85,7 @@ return {
               "path",
               "buffer",
               "snippets",
-              "dictionary",
               "words_dictionary",
-              "thesaurus",
             }
           else
             return {
@@ -84,7 +94,9 @@ return {
               "path",
               "buffer",
               "snippets",
+              "dictionary",
               "words_dictionary",
+              "thesaurus",
             }
           end
         end,
@@ -120,7 +132,7 @@ return {
             name = "snippets",
             score_offset = 12,
             opts = {
-              search_paths = { "my_snippets_path" },
+              search_paths = my_snippets_path,
             },
           },
           cmdline = {
