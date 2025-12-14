@@ -51,3 +51,18 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+-- Automatic switching between Chinese and English
+vim.api.nvim_create_autocmd({ "InsertLeave", "VimEnter" }, {
+  group = augroup("switching0"),
+  callback = function()
+    vim.cmd(":silent :!/mnt/c/user_app/im-select.exe 1033")
+  end,
+})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = augroup("switching1"),
+  callback = function()
+    vim.cmd(":silent :!/mnt/c/user_app/im-select.exe 2052")
+  end,
+})

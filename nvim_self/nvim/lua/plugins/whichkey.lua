@@ -20,6 +20,7 @@ return {
         { "<leader>j", group = "anyjump" },
         { "<leader>g", group = "grug-far" },
         { "<leader>m", group = "format" },
+        { "<leader>z", group = "maximize" },
         { "[", group = "prev" },
         { "]", group = "next" },
         { "g", group = "goto" },

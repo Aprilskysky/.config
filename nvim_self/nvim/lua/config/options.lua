@@ -84,7 +84,7 @@ vim.cmd([[
 ]])
 
 -- GUI
-vim.o.guifont = "FiraCode Nerd Font Mono:h12"
+vim.o.guifont = "FiraCode Nerd Font:h12"
 if vim.g.neovide then
   vim.g.neovide_refresh_rate = 60
 end

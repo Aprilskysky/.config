@@ -30,6 +30,7 @@ return {
         "lua_ls",
         "perlnavigator",
         "bashls",
+        "marksman",
         -- "svlangserver",
       },
     })

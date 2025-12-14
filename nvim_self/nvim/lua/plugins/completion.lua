@@ -8,19 +8,8 @@ return {
       "mikavilpas/blink-ripgrep.nvim",
       "archie-judd/blink-cmp-words",
       {
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-      },
-      {
-        "Kaiser-Yang/blink-cmp-dictionary",
+        "xieyonn/blink-cmp-dat-word",
         dependencies = {
-          "nvim-lua/plenary.nvim",
           "arstgit/high-frequency-vocabulary",
         },
       },
@@ -94,7 +83,7 @@ return {
               "path",
               "buffer",
               "snippets",
-              "dictionary",
+              "datword",
               "words_dictionary",
               "thesaurus",
             }
@@ -179,19 +168,20 @@ return {
               definition_pointers = { "!", "&", "^" },
             },
           },
-          dictionary = {
-            module = "blink-cmp-dictionary",
+          datword = {
+            name = "Word",
+            module = "blink-cmp-dat-word",
             async = true,
-            name = "Dict",
             score_offset = -100,
-            -- Make sure this is at least 2.
-            -- 3 is recommended
             min_keyword_length = 3,
             max_items = 5,
             opts = {
-              -- options for blink-cmp-dictionary
-              dictionary_files = {
-                vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/high-frequency-vocabulary/10k.txt"),
+              paths = {
+                spellsuggest = false, -- Enable limited spellsuggest. eg: enter `thsi` give you `this`.
+                -- "path_to_your_words.txt", -- add your owned word files before dictionary.
+                -- vim.fn.expand(vim.fn.stdpath("data") .. "\\lazy\\high-frequency-vocabulary\\20k.txt"),
+                vim.fn.expand(vim.fn.stdpath("data") .. "/lazy/high-frequency-vocabulary/20k.txt"),
+                -- "/usr/share/dict/words", -- This file is included by default on Linux/macOS.
               },
             },
           },
