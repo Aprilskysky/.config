@@ -2,7 +2,17 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      enabled = function()
+        if vim.loop.os_uname().sysname == "Windows_NT" then
+          return false
+        else
+          return true
+        end
+      end,
+    },
   },
   cmd = "Telescope",
     -- stylua: ignore
@@ -51,6 +61,8 @@ return {
   config = function(_, opts)
     local telescope = require("telescope")
     telescope.setup(opts)
-    telescope.load_extension("fzf")
+    if vim.loop.os_uname().sysname ~= "Windows_NT" then
+      telescope.load_extension("fzf")
+    end
   end,
 }

@@ -6,7 +6,16 @@ return {
       "rafamadriz/friendly-snippets",
       "folke/lazydev.nvim",
       "mikavilpas/blink-ripgrep.nvim",
-      "archie-judd/blink-cmp-words",
+      {
+        "archie-judd/blink-cmp-words",
+        enabled = function()
+          if vim.loop.os_uname().sysname == "Windows_NT" then
+            return false
+          else
+            return true
+          end
+        end,
+      },
       {
         "xieyonn/blink-cmp-dat-word",
         dependencies = {
@@ -75,6 +84,15 @@ return {
               "buffer",
               "snippets",
               "words_dictionary",
+            }
+          elseif vim.loop.os_uname().sysname == "Windows_NT" then
+            return {
+              "lazydev",
+              "lsp",
+              "path",
+              "buffer",
+              "snippets",
+              "datword",
             }
           else
             return {
