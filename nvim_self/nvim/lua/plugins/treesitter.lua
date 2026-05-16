@@ -1,76 +1,48 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  dev = function()
-    if vim.g.config_type == "OA" then
-      return true
-    else
-      return false
+  {
+    "romus204/tree-sitter-manager.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>cT", "<cmd>TSManager<cr>", desc = "open TSManager" },
+    },
+    config = function()
+      require("tree-sitter-manager").setup({
+        -- Default Options
+        ensure_installed = {
+          "bash",
+          "c",
+          "diff",
+          "html",
+          "javascript",
+          "jsdoc",
+          "json",
+          "lua",
+          "luadoc",
+          "luap",
+          "markdown",
+          "markdown_inline",
+          "python",
+          "query",
+          "regex",
+          "toml",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "yaml",
+          "systemverilog",
+          "perl",
+          "tcl",
+          "csv",
+          "make",
+        },                   -- list of parsers to install at the start of a neovim session
+        -- border = nil, -- border style for the window (e.g. "rounded", "single"), if nil, use the default border style defined by 'vim.o.winborder'. See :h 'winborder' for more info.
+        auto_install = true, -- if enabled, install missing parsers when editing a new file
+        highlight = true,    -- treesitter highlighting is enabled by default
+        -- languages = {}, -- override or add new parser sources
+        -- parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+        -- query_dir = vim.fn.stdpath("data") .. "/site/queries",
+      })
     end
-  end,
-  version = false,
-  build = ":TSUpdate",
-  event = "VeryLazy",
-  lazy = vim.fn.argc(-1) == 0,
-  init = function()
-    require("nvim-treesitter.query_predicates")
-  end,
-  opts = {
-    ensure_installed = {
-      "bash",
-      "c",
-      "diff",
-      "html",
-      "javascript",
-      "jsdoc",
-      "json",
-      "jsonc",
-      "lua",
-      "luadoc",
-      "luap",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "query",
-      "regex",
-      "toml",
-      "tsx",
-      "typescript",
-      "vim",
-      "vimdoc",
-      "yaml",
-      "verilog",
-      "perl",
-      "tcl",
-      "csv",
-      "make",
-    },
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = true,
-    },
-    matchup = {
-      enable = true,
-    },
-  },
-  config = function(_, opts)
-    local status, treesitter = pcall(require, "nvim-treesitter.configs")
-    if not status then
-      vim.notify("not found nvim-treesitter")
-      return
-    end
-
-    if type(opts.ensure_installed) == "table" then
-      local added = {}
-      opts.ensure_installed = vim.tbl_filter(function(lang)
-        if added[lang] then
-          return false
-        end
-        added[lang] = true
-        return true
-      end, opts.ensure_installed)
-    end
-    treesitter.setup(opts)
-  end,
+  }
 }

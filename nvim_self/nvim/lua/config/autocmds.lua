@@ -11,14 +11,9 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
--- vim.cmd([[
---   augroup _usr_last_place
---     autocmd!
---     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
---   augroup end
--- ]])
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*",
+  once = true,
   group = augroup("last_place"),
   callback = function()
     local pos = vim.fn.getpos("'\"")
@@ -52,17 +47,17 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Automatic switching between Chinese and English
-vim.api.nvim_create_autocmd({ "InsertLeave", "VimEnter" }, {
-  group = augroup("switching0"),
-  callback = function()
-    vim.cmd(":silent :!/mnt/c/user_app/im-select.exe 1033")
-  end,
-})
-
-vim.api.nvim_create_autocmd("InsertEnter", {
-  group = augroup("switching1"),
-  callback = function()
-    vim.cmd(":silent :!/mnt/c/user_app/im-select.exe 2052")
-  end,
-})
+-- -- Automatic switching between Chinese and English
+-- vim.api.nvim_create_autocmd({ "InsertLeave", "VimEnter" }, {
+--   group = augroup("switching0"),
+--   callback = function()
+--     vim.cmd(":silent :!/mnt/c/user_app/im-select.exe 1033")
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+--   group = augroup("switching1"),
+--   callback = function()
+--     vim.cmd(":silent :!/mnt/c/user_app/im-select.exe 2052")
+--   end,
+-- })

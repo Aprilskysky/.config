@@ -27,8 +27,8 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "lua_ls",
-        "perlnavigator",
-        "bashls",
+        -- "perlnavigator",
+        -- "bashls",
         "marksman",
         -- "svlangserver",
       },
@@ -36,8 +36,8 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
-        "stylua", -- lua formatter
-        "verible",
+        -- "stylua", -- lua formatter
+        -- "verible",
         "checkmake",
         -- "beautysh",
       },

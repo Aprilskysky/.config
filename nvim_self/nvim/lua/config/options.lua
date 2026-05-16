@@ -26,12 +26,12 @@ opt.signcolumn = "yes"
 opt.autoindent = true
 opt.smartindent = true
 -- set search
-opt.incsearch = true -- search as characters are entered
-opt.hlsearch = true -- highlight matchs
+opt.incsearch = true  -- search as characters are entered
+opt.hlsearch = true   -- highlight matchs
 opt.ignorecase = true -- ignore case in searches by default
-opt.smartcase = true -- but make it case sensitive if an uppercase is entered
+opt.smartcase = true  -- but make it case sensitive if an uppercase is entered
 -- set cmd height
-opt.cmdheight = 0 -- The command line height is 2 to provide sufficient display space
+opt.cmdheight = 1     -- The command line height is 2 to provide sufficient display space
 -- line folding
 opt.wrap = true
 -- Allows modified buffers to be hidden
@@ -66,14 +66,18 @@ vim.bo.autoread = true
 -- vim.g.loaded_netrwPlugin = 1
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.list = true -- Show some invisible characters (tabs...
-opt.pumblend = 10 -- Popup blend
+opt.list = true    -- Show some invisible characters (tabs...
+opt.pumblend = 10  -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.spelllang = { "en" }
 opt.splitkeep = "screen"
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.conceallevel = 0
 opt.nrformats = "unsigned"
+-- global floating window border (all vim.lsp, vim.diagnostic, etc.)
+opt.winborder = "rounded"
+-- completion popup menu border
+opt.pumborder = "rounded"
 
 -- vim.cmd([[set shell=/bin/bash\ -i]])
 vim.cmd([[set shell=/bin/bash\ -noprofile]])

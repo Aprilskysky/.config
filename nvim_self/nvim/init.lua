@@ -1,4 +1,6 @@
+require("config.ui2")
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 require("config.lazy")
+-- require("config.zpack")

@@ -4,7 +4,6 @@ return {
     ft = "markdown",
     -- lazy = false,
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
       "nvim-mini/mini.icons",
       "bullets-vim/bullets.vim",
     },
