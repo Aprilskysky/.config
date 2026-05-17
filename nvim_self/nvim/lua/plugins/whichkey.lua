@@ -22,14 +22,11 @@ return {
           { "<leader>g", group = "grug-far" },
           { "<leader>m", group = "format/messages" },
           { "<leader>z", group = "maximize" },
-          { "[",         group = "prev" },
-          { "]",         group = "next" },
-          { "g",         group = "goto" },
+          { "[", group = "prev" },
+          { "]", group = "next" },
+          { "g", group = "goto" },
         },
       })
-      if not vim.tbl_isempty(wk.defaults) then
-        wk.register(wk.defaults)
-      end
     end,
   },
 }
