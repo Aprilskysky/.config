@@ -3,17 +3,27 @@ return {
     "numToStr/Comment.nvim",
     enent = "VeryLazy",
     keys = {
-      { "gc", mode = { "n", "x" }, desc = "comment" },
+      { "gc",  mode = { "n", "x" }, desc = "comment" },
       { "gcc", mode = { "n", "x" }, desc = "line comment toggle" },
-      { "gb", mode = { "n", "x" }, desc = "block comment" },
+      { "gb",  mode = { "n", "x" }, desc = "block comment" },
     },
     config = function()
-      require("Comment").setup()
-      local ft = require("Comment.ft")
-      ft.systemverilog = { "//%s", "/*%s*/" }
-      ft.verilog = { "//%s", "/*%s*/" }
-      ft.verilog_systemverilog = { "//%s", "/*%s*/" }
-      ft.list = { "//%s" }
+      require("Comment").setup({
+        pre_hook = function(ctx)
+          local disabled_fts = {
+            "tmux",
+          }
+          if vim.tbl_contains(disabled_fts, vim.bo.filetype) then
+            return false
+          end
+        end,
+        ft = {
+          systemverilog = { "//%s", "/*%s*/" },
+          verilog = { "//%s", "/*%s*/" },
+          verilog_systemverilog = { "//%s", "/*%s*/" },
+          list = { "//%s" },
+        },
+      })
     end,
   },
 }
