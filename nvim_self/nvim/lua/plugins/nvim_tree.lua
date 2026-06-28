@@ -61,9 +61,9 @@ return {
         },
       },
       -- wsl install -g wsl-open
-      system_open = {
-        cmd = "wsl-open", -- mac set open
-      },
+      -- system_open = {
+      --   cmd = "wsl-open", -- mac set open
+      -- },
       renderer = {
         full_name = true,
         group_empty = true,

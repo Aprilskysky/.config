@@ -11,5 +11,7 @@ return {
     vim.cmd([[
       let g:any_jump_disable_default_keybindings = 1
     ]])
+    -- add systemverilog type for ripgrep (rg doesn't have it built-in)
+    vim.env.RIPGREP_CONFIG_PATH = vim.fn.stdpath("config") .. "/rg.conf"
   end,
 }

@@ -78,6 +78,8 @@ opt.nrformats = "unsigned"
 opt.winborder = "rounded"
 -- completion popup menu border
 opt.pumborder = "rounded"
+-- default C compiler
+vim.env.CC = "gcc"
 
 -- vim.cmd([[set shell=/bin/bash\ -i]])
 vim.cmd([[set shell=/bin/bash\ -noprofile]])
