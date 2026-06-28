@@ -60,7 +60,7 @@ opt.showtabline = 2
 opt.showmode = false
 -- When the file is modified by an external program, it is automatically loaded
 opt.autoread = true
-vim.bo.autoread = true
+vim.o.autoread = true
 -- disable netrw
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1

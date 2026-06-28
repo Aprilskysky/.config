@@ -1,7 +1,7 @@
 return {
   {
     "numToStr/Comment.nvim",
-    enent = "VeryLazy",
+    event = "VeryLazy",
     keys = {
       { "gc",  mode = { "n", "x" }, desc = "comment" },
       { "gcc", mode = { "n", "x" }, desc = "line comment toggle" },

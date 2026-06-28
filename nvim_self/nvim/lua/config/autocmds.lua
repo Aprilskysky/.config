@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*",
-  once = true,
   group = augroup("last_place"),
   callback = function()
     local pos = vim.fn.getpos("'\"")
