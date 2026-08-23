@@ -19,8 +19,8 @@ end
 
 function M.set_vcs(lint)
   lint.linters_by_ft = {
-    systemverilog = { "verilator" },
-    verilog = { "verilator" },
+    systemverilog = { "vcs" },
+    verilog = { "vcs" },
   }
   local severities = {
     ["Error"] = vim.diagnostic.severity.ERROR,
@@ -29,7 +29,7 @@ function M.set_vcs(lint)
     ["Lint"] = vim.diagnostic.severity.HINT,
   }
 
-  require("lint").linters.vcs = {
+  lint.linters.vcs = {
     cmd = "vcs",
     stdin = false,
     append_fname = function()
@@ -61,8 +61,8 @@ function M.set_vcs(lint)
       end,
     },
     ignore_exitcode = true,
-    parser = function(output)
-      if output then
+    parser = function(output, bufnr)
+      if not output then
         return {}
       end
       local diagnostics = {}
@@ -104,7 +104,10 @@ function M.set_vcs(lint)
                 _, _, lnum = string.find(line, "^%s*(%d+)%s*$")
               end
               if severity ~= nil and code ~= nil and file ~= nil and lnum ~= nil and message ~= nil then
-                if vim.api.nvim_buf_get_name(bufnr) == file then
+                -- vcs reports names relative to the invocation dir, so also
+                -- match the tail of the buffer path
+                local bufnr_name = vim.api.nvim_buf_get_name(bufnr)
+                if bufnr_name == file or vim.fn.fnamemodify(bufnr_name, ":t") == file then
                   diagnostic = {
                     source = "vcs",
                     severity = severities[severity],

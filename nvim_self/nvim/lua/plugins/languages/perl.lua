@@ -2,10 +2,8 @@ local M = {}
 
 function M.set_perlnavigator(capabilities)
   if vim.g.config_type == "RD" then
-    vim.lsp.config(
-      "perlnavigator",
-      { cmd = { vim.fn.stdpath("data") .. "/mason/packages/local/perlnavigator-linux-x86_64/perlnavigator" } }
-    )
+    local nvim_self = vim.env.NVIM_SELF or vim.fs.normalize(vim.fn.stdpath("config") .. "/..")
+    vim.lsp.config("perlnavigator", { cmd = { nvim_self .. "/app/bin/perlnavigator" } })
   end
   vim.lsp.config("perlnavigator", {
     capabilities = capabilities,

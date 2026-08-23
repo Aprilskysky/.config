@@ -6,10 +6,10 @@ return {
   },
   keys = {
     -- restore the session for the current directory
-    vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {}),
+    { "<leader>qs", function() require("persistence").load() end, desc = "Restore session for the current directory" },
     -- restore the last session
-    vim.api.nvim_set_keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {}),
+    { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore the last session" },
     -- stop Persistence => session won't be saved on exit
-    vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {}),
+    { "<leader>qd", function() require("persistence").stop() end, desc = "Stop persistence (no session save on exit)" },
   },
 }

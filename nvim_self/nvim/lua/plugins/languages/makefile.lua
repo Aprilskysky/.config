@@ -6,7 +6,8 @@ function M.set_makefile_linter(lint)
   }
   local checkmake = lint.linters.checkmake
   if vim.g.config_type == "RD" then
-    checkmake.cmd = vim.fn.stdpath("data") .. "/mason/packages/local/checkmake-v0.3.2.linux.amd64"
+    local nvim_self = vim.env.NVIM_SELF or vim.fs.normalize(vim.fn.stdpath("config") .. "/..")
+    checkmake.cmd = nvim_self .. "/app/bin/checkmake"
   end
 end
 

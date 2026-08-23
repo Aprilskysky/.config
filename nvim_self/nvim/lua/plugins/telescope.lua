@@ -23,7 +23,8 @@ return {
     { "<leader>fb", "<cmd>Telescope buffers<cr>",             desc = "Buffers" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>",           desc = "Help" },
     { "<leader>fd", "<cmd>Telescope diagnostics<cr>",         desc = "Show all buffer diagnostics" },
-    { "<leader>fD", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Show current buffer diagnostics" }
+    { "<leader>fD", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Show current buffer diagnostics" },
+    { "<leader>fc", "<cmd>Telescope colorscheme<cr>",         desc = "Find colorscheme" },
   },
   config = function()
     local telescope = require("telescope")

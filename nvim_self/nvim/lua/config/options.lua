@@ -99,18 +99,15 @@ end
 vim.filetype.add({
   extension = {
     list = "list",
-    csh = "tcsh",
-    f = "file",
-    -- v = "systemverilog",
-    -- sv = "systemverilog",
-    -- svh = "systemverilog",
+    csh  = "tcsh",
+    f    = "file",
+    v    = "systemverilog",
+    dj   = "ruby",
   },
   filename = {
-    -- [".bashrc"] = "bash",
-    -- [".cshrc"] = "tcsh",
-    -- [".cshrc.user"] = "tcsh",
-    -- [".tmux.conf"] = "tmux",
-    -- ["tmux.conf"] = "tmux",
+    [".bashrc"]    = "bash",
+    [".cshrc"]     = "tcsh",
+    [".tmux.conf"] = "tmux",
   },
 })
 

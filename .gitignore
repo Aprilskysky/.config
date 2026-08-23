@@ -20,3 +20,5 @@ nvim_self/nvim/dashboard
 nvim_self/nvim/luac
 nvim_self/nvim/gentags.nvim
 nvim_self/cache
+nvim_self/app/package
+go

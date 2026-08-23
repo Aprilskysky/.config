@@ -1,10 +1,9 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  -- event = "VeryLazy",
+  event = "VeryLazy",
   keys = {
     { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "nvimtreetoggle" },
   },
-  -- enabled = false,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -65,7 +64,7 @@ return {
       --   cmd = "wsl-open", -- mac set open
       -- },
       renderer = {
-        full_name = true,
+        full_name = false,
         group_empty = true,
         special_files = {},
         symlink_destination = false,

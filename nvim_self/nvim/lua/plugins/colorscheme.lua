@@ -92,6 +92,13 @@ return {
       require("gruvbox").setup({
         overrides = {
           SignColumn = { bg = "#282828" },
+          -- remove gruvbox's hardcoded bold from the nvim-tree icon groups:
+          -- Windows Terminal renders bold nerd-font glyphs via font fallback,
+          -- which shows them white (catppuccin has no bold here, hence normal)
+          NvimTreeFolderIcon = { fg = "#458588", bold = false },
+          NvimTreeRootFolder = { fg = "#b16286", bold = false },
+          NvimTreeExecFile = { fg = "#98971a", bold = false },
+          NvimTreeOpenedFile = { fg = "#fb4934", bold = false },
         },
         bold = true,
         -- italic = {

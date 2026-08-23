@@ -2,10 +2,8 @@ local M = {}
 
 function M.set_lua_ls(capabilities)
   if vim.g.config_type == "RD" then
-    vim.lsp.config(
-      "lua_ls",
-      { cmd = { vim.fn.stdpath("data") .. "/mason/packages/local/lua_ls/bin/lua-language-server" } }
-    )
+    local nvim_self = vim.env.NVIM_SELF or vim.fs.normalize(vim.fn.stdpath("config") .. "/..")
+    vim.lsp.config("lua_ls", { cmd = { nvim_self .. "/app/bin/lua-language-server" } })
   end
   vim.lsp.config("lua_ls", {
     capabilities = capabilities,
