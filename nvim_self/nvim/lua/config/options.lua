@@ -61,9 +61,10 @@ opt.showmode = false
 -- When the file is modified by an external program, it is automatically loaded
 opt.autoread = true
 vim.o.autoread = true
--- disable netrw
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
+-- disable netrw, nvim-tree takes over directory buffers
+-- (must be set before netrw loads, i.e. in this file)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.list = true    -- Show some invisible characters (tabs...

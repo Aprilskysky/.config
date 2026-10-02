@@ -51,6 +51,7 @@ tool_repo() {
     lua_ls)       echo "LuaLS/lua-language-server" ;;
     perlnavigator) echo "bscan/PerlNavigator" ;;
     marksman)     echo "artempyanykh/marksman" ;;
+    ctags_lsp)    echo "netmute/ctags-lsp" ;;
   esac
 }
 
@@ -64,6 +65,7 @@ tool_asset() {
     lua_ls)       grep -E '^lua-language-server-.*-linux-x64\.tar\.gz$' ;;
     perlnavigator) grep -E '^perlnavigator-linux-x86_64\.zip$' ;;
     marksman)     grep -E '^marksman-linux-x64$' ;;
+    ctags_lsp)    grep -E '^ctags-lsp_Linux_x86_64\.tar\.gz$' ;;
   esac
 }
 
@@ -78,6 +80,7 @@ tool_links() {
     lua_ls)       echo "lua-language-server" ;;
     perlnavigator) echo "perlnavigator" ;;
     marksman)     echo "marksman" ;;
+    ctags_lsp)    echo "ctags-lsp" ;;
     bash_ls)      echo "bash-language-server" ;;
   esac
 }
@@ -247,7 +250,7 @@ if [ "${1:-}" = "-f" ]; then
   FORCE=1
 fi
 
-TOOLS=(nvim fzf rg ctags checkmake lua_ls perlnavigator marksman bash_ls)
+TOOLS=(nvim fzf rg ctags checkmake lua_ls perlnavigator marksman ctags_lsp bash_ls)
 for tool in "${TOOLS[@]}"; do
   install_tool "$tool" "$FORCE" || echo "[$tool] FAILED"
 done

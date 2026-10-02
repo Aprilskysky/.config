@@ -159,8 +159,14 @@ function M.set_verible(capabilities)
 end
 
 function M.set_veridian(capabilities)
+  local bin = vim.fn.stdpath("data") .. "/mason/packages/veridian"
+  -- the binary is installed by mason; skip silently when it is missing,
+  -- otherwise every SystemVerilog buffer logs a spawn error
+  if vim.fn.executable(bin) == 0 then
+    return
+  end
   vim.lsp.config("veridian", {
-    cmd = { vim.fn.stdpath("data") .. "/mason/packages/veridian" },
+    cmd = { bin },
     root_markers = { ".git", "veridian.yml" },
     capabilities = capabilities,
   })

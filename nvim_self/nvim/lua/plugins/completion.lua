@@ -1,7 +1,7 @@
 return {
   {
     "saghen/blink.cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "rafamadriz/friendly-snippets",
       "folke/lazydev.nvim",
@@ -127,6 +127,13 @@ return {
             opts = {
               -- get all buffers, even ones like neo-tree
               get_bufnrs = vim.api.nvim_list_bufs,
+              -- blink defaults are 20000 / 200000 / 500000. A buffer larger
+              -- than max_async_buffer_size is skipped entirely, which makes
+              -- buffer completion silently stop working in big files.
+              -- 10x of the defaults; the three must stay strictly increasing.
+              max_sync_buffer_size = 200000,
+              max_async_buffer_size = 2000000,
+              max_total_buffer_size = 5000000,
               -- or (recommended) filter to only "normal" buffers
               -- get_bufnrs = function()
               --   return vim.tbl_filter(function(bufnr)
